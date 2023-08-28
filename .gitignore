@@ -3,3 +3,4 @@
 .venv
 .space
 Spacefile
+__pycache__

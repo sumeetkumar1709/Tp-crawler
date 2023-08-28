@@ -16,9 +16,13 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email import encoders
+from fastapi import FastAPI
+from concurrent.futures import ThreadPoolExecutor
+import time 
 
 load_dotenv()
-
+loop = asyncio.new_event_loop()
+executor = ThreadPoolExecutor()
 
 def connectMongo():
     mongo_url = os.environ.get('mongouri')
@@ -206,6 +210,7 @@ def parseHtml(html):
     return soup
 
 async def main():
+    print("Loading")
     if os.environ.get('ENVIRONMENT') == 'PRODUCTION':
         browser = await launch()
         page = await browser.newPage()
@@ -219,15 +224,25 @@ async def main():
         html = await page2.content()
         soup = parseHtml(html)
         await browser.close()
-        parser(soup)
+        parser(soup) 
     else:
         Func = open("GFG-1.html","r")
         temp = Func.read()
         soup = parseHtml(temp)
         parser(soup)
+    print("DONE")
 
+app = FastAPI()
+@app.get("/")
+async def root():
+    return {"message":"Home route"}
 
-asyncio.get_event_loop().run_until_complete(main()) # remove timedelta for production builds
+@app.post('/checkTp')
+async def importData():
+    asyncio.create_task(main())  # Run the main task asynchronously
+    return {"message": "Task scheduled"}
+    
+
 
 
 
