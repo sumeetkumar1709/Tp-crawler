@@ -212,7 +212,11 @@ def parseHtml(html):
 async def main():
     print("Loading")
     if os.environ.get('ENVIRONMENT') == 'PRODUCTION':
-        browser = await launch()
+        browser = await launch({
+            'headless': True,
+            'args': [
+                '--user-data-dir=/tmp'
+            ]})
         page = await browser.newPage()
         await page.goto('https://tp.bitmesra.co.in/login.html')
         state = random.randint(1,5)
