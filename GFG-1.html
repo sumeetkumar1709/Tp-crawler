@@ -1,0 +1,775 @@
+<!DOCTYPE html><html lang="en"><head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>T&amp;P Bit, Mesra</title>
+    <base href="https://tp.bitmesra.co.in/">
+  <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="assets/vendors/base/vendor.bundle.base.css"> 
+  <link rel="stylesheet" href="assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css"> 
+  <link rel="stylesheet" href="assets/css/select2.min.css">
+  <link rel="stylesheet" href="assets/css/select2-bootstrap-5-theme.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="shortcut icon" href="assets/images/favicon.png">
+  <link rel="stylesheet" href="assets/css/bootstrap-datepicker.min.css">
+  <style type="text/css">
+  .blink_me {
+      animation: blinker 1s linear infinite;
+    }
+    
+    @keyframes blinker {
+      50% {
+        opacity: 0;
+      }
+    }
+  select.form-control{
+    -webkit-appearance: menulist!important;
+    -moz-appearance: menulist!important;
+    -ms-appearance: menulist!important;
+    -o-appearance: menulist!important;
+    appearance: menulist!important;
+} .form-control::placeholder, .dataTables_wrapper select::placeholder,.bootstrap-tagsinput input::placeholder { color: #c9c8c8;  opacity: 1; }
+.toast-container { z-index:9999 !important; }
+.table  td{ line-height:normal !important; }
+.select2-container .select2-selection--single { height:36px; }
+  .select2 { min-width:100%; width:100%; }
+  .bg {  
+      background: #f0f9ff; /* Old browsers */
+      background: -moz-linear-gradient(top,  #f0f9ff 0%, #cbebff 47%, #a1dbff 100%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(top,  #f0f9ff 0%,#cbebff 47%,#a1dbff 100%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom,  #f0f9ff 0%,#cbebff 47%,#a1dbff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f9ff', endColorstr='#a1dbff',GradientType=0 ); /* IE6-9 */
+      border: 1px solid #b8ddd6;
+   }
+  .bg2 {  
+      background: #ebe9f9; /* Old browsers */
+      background: -moz-linear-gradient(top,  #ebe9f9 0%, #d8d0ef 50%, #cec7ec 51%, #c1bfea 100%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(top,  #ebe9f9 0%,#d8d0ef 50%,#cec7ec 51%,#c1bfea 100%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom,  #ebe9f9 0%,#d8d0ef 50%,#cec7ec 51%,#c1bfea 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebe9f9', endColorstr='#c1bfea',GradientType=0 ); /* IE6-9 */
+ }
+    .dataTables_wrapper .dataTable tr th {
+       font-weight:bold;
+      white-space: normal; font-size:0.8em;
+      font-weight: 300;
+      padding: 8px;
+    }
+    .dataTables_wrapper .dataTable tbody tr td {
+      border: 1px solid rgba(151, 151, 151, 0.18);
+      color: #08113b;
+      white-space: normal; font-size:0.8em;
+      font-weight: 300;
+      padding: 5px;
+    }
+  </style> 
+  <style>.dataTables_wrapper .dataTable thead tr th { padding:8px 4px; font-size:14px; } .dataTables_wrapper .dataTable tbody tr td { padding:5px; }  
+</style>
+ 
+</head>
+<body>
+  <div class="container-scroller">
+       <!-- partial:partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="navbar-brand-wrapper d-flex justify-content-center">
+        <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">  
+          <a class="navbar-brand brand-logo" href="index.html"><img src="assets/images/logo.svg" alt="logo"></a>
+          <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg" alt="logo"></a>
+          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+            <span class="mdi mdi-sort-variant"></span>
+          </button>
+        </div>  
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <ul class="navbar-nav mr-lg-4 w-100">
+          <li class="nav-item nav-search d-none d-lg-block w-100">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="search">
+                  <i class="mdi mdi-magnify"></i>
+                </span>
+              </div>
+              <input type="text" class="form-control" placeholder="Search now" aria-label="search" aria-describedby="search">
+            </div>
+          </li>
+        </ul>
+        <ul class="navbar-nav navbar-nav-right">
+          <!-- <li class="nav-item dropdown me-1">
+            <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center" id="messageDropdown" href="#" data-bs-toggle="dropdown">
+              <i class="mdi mdi-message-text mx-0"></i>
+              <span class="count"></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="messageDropdown">
+              <p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
+               
+            </div>
+          </li> -->
+          <li class="nav-item dropdown me-4">
+            <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center notification-dropdown" id="notificationDropdown" href="" data-bs-toggle="dropdown">
+              <i class="mdi mdi-bell mx-0"></i>
+              <!-- <span class="count"></span> -->
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="notificationDropdown">
+              <p class="mb-0 font-weight-normal float-left dropdown-header"><a href="newsevents">Notifications</a></p>
+                <!-- <a class="dropdown-item">
+<div class="item-thumbnail">
+  <div class="item-icon bg-success">
+    <i class="mdi mdi-information mx-0"></i>
+  </div>
+</div>
+<div class="item-content">
+  <h6 class="font-weight-normal">Application Error</h6>
+  <p class="font-weight-light small-text mb-0 text-muted">
+    Just now
+  </p>
+</div>
+</a>
+<a class="dropdown-item">
+<div class="item-thumbnail">
+  <div class="item-icon bg-warning">
+    <i class="mdi mdi-settings mx-0"></i>
+  </div>
+</div>
+<div class="item-content">
+  <h6 class="font-weight-normal">Settings</h6>
+  <p class="font-weight-light small-text mb-0 text-muted">
+    Private message
+  </p>
+</div>
+</a>
+<a class="dropdown-item">
+<div class="item-thumbnail">
+  <div class="item-icon bg-info">
+    <i class="mdi mdi-account-box mx-0"></i>
+  </div>
+</div>
+<div class="item-content">
+  <h6 class="font-weight-normal">New user registration</h6>
+  <p class="font-weight-light small-text mb-0 text-muted">
+    08 days ago
+  </p>
+</div>
+</a> -->
+  
+            </div>
+          </li>
+          <li class="nav-item nav-profile dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
+              <img src="https://tp.bitmesra.co.in/assets/images/faces/profile_tpbit-btech1045820.jpg" alt="profile">
+              <span class="nav-profile-name small">MD ATTESAR AHMAD<br><small>Student</small></span>           </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+              <a class="dropdown-item" href="profile.html">
+                <i class="mdi mdi-account text-primary"></i>
+                Profile
+              </a>
+              <a class="dropdown-item" href="logout.html">
+                <i class="mdi mdi-logout text-primary"></i>
+                Logout
+              </a>
+            </div>
+          </li>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="mdi mdi-menu"></span>
+        </button>
+      </div>
+    </nav>    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html">
+              <i class="mdi mdi-home menu-icon"></i>
+              <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
+         
+          <li class="nav-item">
+            <a class="nav-link" href="viewplanner.html">
+              <i class="mdi mdi-calendar menu-icon"></i>
+              <span class="menu-title">Calander</span>
+            </a>
+          </li>
+    
+           <li class="nav-item">
+            <a class="nav-link" href="applyjobs.html">
+              <i class="mdi text-success mdi-book-open menu-icon"></i>
+              <span class="menu-title ">Jobs</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#ui-company" aria-expanded="false" aria-controls="ui-company">
+              <i class="mdi mdi-file-document-box menu-icon"></i>
+              <span class="menu-title">Build Your Resume</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-company">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item py-0 "><a class="nav-link pl-1 py-1" href="student/addnew.html">
+                    <i class="mdi mdi-account-box  menu-icon" style="color:#AA0"></i> <span class="menu-title">Personal Details</span></a></li>
+                <li class="nav-item py-0"><a class="nav-link pl-1 py-1" href="student/addacademic.html">
+                    <i class="mdi mdi-school menu-icon text-danger"></i> <span class="menu-title">Academic Details</span></a></li> 
+                <li class="nav-item py-0"><a class="nav-link pl-1 py-1 flex-wrap" href="student/addskills.html">
+                    <i class="mdi mdi-tag-multiple menu-icon" style="color:#6f2c2c"></i> <span class="menu-title">Skills</span></a></li> 
+                <li class="nav-item py-0"><a class="nav-link pl-1 py-1" href="student/co-curricular.html">
+                    <i class="mdi mdi-book-variant menu-icon " style="color:#0E0"></i> <span class="menu-title">Co Curricular Activities</span></a></li>
+                <li class="nav-item py-0"><a class="nav-link pl-1 py-1" href="student/extra-co-curricular_activities.html">
+                    <i class="mdi mdi-bookmark menu-icon " style="color:#7900DD"></i> <span class="menu-title">Extra Curricular Activities</span></a></li>
+                <li class="nav-item py-0"><a class="nav-link pl-1 py-1" href="student/responsibilty.html">
+                    <i class="mdi mdi-thumb-up menu-icon " style="color:#9b247d"></i> <span class="menu-title">Position of Responsibilty</span></a></li>
+                <li class="nav-item py-0"><a class="nav-link pl-1 py-1" href="student/addexperience.html">
+                    <i class="mdi mdi-book-multiple menu-icon" style="color:#7BA800"></i> <span class="menu-title">Work Experience</span></a></li>
+                <li class="nav-item py-0"><a class="nav-link pl-1 py-1" href="student/social_link.html">
+                    <i class="mdi mdi-edge menu-icon" style="color:#2EE"></i> <span class="menu-title">Social LINKS</span></a></li>
+                <li class="nav-item py-0"><a class="nav-link pl-1 py-1 flex-wrap" href="student/addbrief.html">
+                    <i class="mdi mdi-information menu-icon" style="color:#FA0"></i> <span class="menu-title">Career Objective</span></a></li>
+                <li class="nav-item py-0"><a class="nav-link pl-1 py-1" href="student/attachment.html">
+                    <i class="mdi mdi-attachment menu-icon" style="color:#00E"></i> <span class="menu-title">Upload Documents</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="student/preview.html">
+              <i class="mdi text-info mdi-printer menu-icon"></i> <span class="menu-title"> Submit/Print Resume</span></a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="student/current_academic.html">
+              <i class="mdi mdi-school menu-icon"></i> <span class="menu-title"> Current Academics</span></a></li>
+           
+          <li class="nav-item"><a class="nav-link" href="student/additionalresume.html">
+              <i class="mdi text-primary mdi-file-multiple menu-icon"></i> <span class="menu-title"> Upload Additional Resumes</span></a></li> 
+
+              <li class="nav-item"><a class="nav-link" href="student/offerletter.html">
+              <i class="mdi text-success mdi-certificate menu-icon"></i> <span class="menu-title"> Upload Offer Letter</span></a></li> 
+
+          <li class="nav-item">
+            <a class="nav-link" href="profile.html">
+              <i class="mdi mdi-settings menu-icon text-dark"></i>
+              <span class="menu-title ">Manage Profile</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="studdocu.html">
+              <i class="mdi mdi-file-document menu-icon text-primary"></i>
+              <span class="menu-title ">Help Doc</span>
+            </a>
+          </li>
+                <li class="nav-item">
+            <a class="nav-link" href="logout.html">
+              <i class="mdi mdi-logout text-danger menu-icon"></i>
+              <span class="menu-title " style="color:red">Logout</span>
+            </a>
+          </li>
+        </ul>
+      </nav>      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+                  <div class="row"> 
+            <div class="col-md-12 ">
+              
+              <div class="card my-1">
+                <div class="card-body dashboard-tabs p-0"> 
+                  <div class="tab-content py-0 px-0">
+                    <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+                      <div class="d-flex flex-wrap justify-content-xl-between">
+                        <!--<div class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                          <i class="mdi mdi-calendar icon-lg me-3 text-primary"></i>
+                          <div class="d-flex flex-column justify-content-around">
+                            <small class="mb-1 text-muted">Calendar</small>
+                            <div class="dropdown">
+                              <a class="btn btn-secondary p-0 bg-transparent border-0 text-dark shadow-none font-weight-medium" href="viewplanner"  role="button" >
+                                <h5 class="mb-0 d-inline-block">View</h5>
+                              </a> 
+                            </div>
+                          </div>
+                        </div>-->
+                        <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                          <i class="mdi mdi-check-all me-3 icon-lg text-success"></i>
+                          <div class="d-flex flex-column justify-content-around">
+                            <small class="mb-1 text-muted">Eligible</small>
+                            <h5 class="me-2 mb-0"><button type="button" class="btn btn-transparent py-1" data-bs-toggle="modal" data-bs-target="#eligibleModal">9</button></h5>
+                          </div>
+                        </div>
+                        <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                          <i class="mdi mdi-note-plus me-3 icon-lg text-danger"></i>
+                          <div class="d-flex flex-column justify-content-around">
+                            <small class="mb-1 text-muted">Applied</small>
+                            <h5 class="me-2 mb-0"><button type="button" class="btn btn-transparent py-1" data-bs-toggle="modal" data-bs-target="#exampleModal">3</button></h5>
+                          </div>
+                        </div>
+                        
+                        <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                          <i class="mdi mdi-file-document-box me-3 icon-lg text-success"></i>
+                          <div class="d-flex flex-column justify-content-around">
+                            <small class="mb-1 text-muted">Internship Offer</small>
+                            <h5 class="me-2 mb-0"></h5>
+                          </div>
+                        </div>
+                        <div class="d-flex py-3 border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                          <i class="mdi mdi-download me-3 icon-lg text-primary"></i>
+                          <div class="d-flex flex-column justify-content-around">
+                            <small class="mb-1 text-muted">Downloads</small>
+                            <h5 class="me-2 mb-0"></h5><a href="Attendance Template for Students.pdf" target="_blank">View</a>
+                          </div>
+                        </div>
+                        <div class="d-flex py-3 border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                          <i class="mdi mdi-download me-3 icon-lg text-danger"></i>
+                          <div class="d-flex flex-column justify-content-around">
+                            <small class="mb-1 text-muted">SOP</small>
+                            <h5 class="me-2 mb-0"></h5><a href="SOP.pdf" target="_blank">View</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div> 
+                  </div>
+                </div>
+              </div>
+            </div>
+           
+            <div class="col-md-7 stretch-card">
+              <div class="card">
+                <div class="card-body p-2">
+                                       
+                <div class="alert alert-danger d-flex justify-content-between" role="alert" style="border-bottom:2px solid #fb0404;">
+                                <div class="pr-2"><i class="mdi mdi-file" role="img" style="font-size:28px;"></i>&nbsp;&nbsp;</div>
+                                <div class="w-100 flex-1">
+                                    <div class="mb-1"><b>Update/Submit Resume Link with Public URL</b>(Like Google Drive, Github and etc.)</div>
+                                    <p> 
+                                     </p><div>
+                                        <b class="blink_me">Alert</b>
+                                        <a href="student/additionalresume.html" class="mt-2 btn btn-sm btn-danger text-white float-end" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Submit</a>
+                                     </div>
+                                    <p></p>
+                                </div>
+                            </div>                  <p class="card-title py-2 my-0">Recent Jobs</p>
+                  <div class="table-responsive"> 
+                    <div id="job-listings_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="job-listings_length"><label>Show <select name="job-listings_length" aria-controls="job-listings" class="form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-12 col-md-6"><div id="job-listings_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="job-listings"></label></div></div></div><div class="row"><div class="col-sm-12"><table id="job-listings" class="table table-sm table-striped dataTable no-footer" role="grid" aria-describedby="job-listings_info">
+                      <thead>
+                        <tr role="row"><th class="sorting" tabindex="0" aria-controls="job-listings" rowspan="1" colspan="1" aria-label="Company: activate to sort column ascending" style="width: 169px;">Company</th><th class="sorting" tabindex="0" aria-controls="job-listings" rowspan="1" colspan="1" aria-label="Dead Line: activate to sort column ascending" style="width: 51px;">Dead Line</th><th class="sorting_desc" tabindex="0" aria-controls="job-listings" rowspan="1" colspan="1" aria-sort="descending" aria-label="Posted On: activate to sort column ascending" style="width: 51px;">Posted On</th><th class="sorting" tabindex="0" aria-controls="job-listings" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 39px;">Action</th></tr>
+                      </thead>
+                      <tbody>
+                                              <tr role="row" class="odd">
+                                      <td class="py-0"> Truminds Software Systems</td>
+                                      <td data-order="2023/08/30">30/08/2023</td>
+                                      <td data-order="2023/08/25" class="sorting_1">25/08/2023</td>
+                                      <td class="no-sort">
+                                        <a target="_blank" href="job/notice/ea6c2b02a7b0549bbb67779eacc3a649">Updates</a>  || <a target="_blank" href="job/info/ea6c2b02a7b0549bbb67779eacc3a649">View &amp; Apply</a> 
+                                     </td>
+                                  </tr><tr role="row" class="even">
+                                      <td class="py-0"> Incture Technologies (P) Ltd</td>
+                                      <td data-order="2023/08/28">28/08/2023</td>
+                                      <td data-order="2023/08/25" class="sorting_1">25/08/2023</td>
+                                      <td class="no-sort">
+                                        <a target="_blank" href="job/notice/8d4bddcfe6ab2e04eceb702f6cb1eebb">Updates</a>  || <a target="_blank" href="job/info/8d4bddcfe6ab2e04eceb702f6cb1eebb">View &amp; Apply</a> 
+                                     </td>
+                                  </tr><tr role="row" class="odd">
+                                      <td class="py-0"> Tejas Networks</td>
+                                      <td data-order="2023/08/28">28/08/2023</td>
+                                      <td data-order="2023/08/25" class="sorting_1">25/08/2023</td>
+                                      <td class="no-sort">
+                                        <a target="_blank" href="job/notice/3118e0b7f4013d248428084f0c71c4be">Updates</a>  || <a target="_blank" href="job/info/3118e0b7f4013d248428084f0c71c4be">View &amp; Apply</a> 
+                                     </td>
+                                  </tr><tr role="row" class="even">
+                                      <td class="py-0"> L&amp;T Construction</td>
+                                      <td data-order="2023/08/25">25/08/2023</td>
+                                      <td data-order="2023/08/24" class="sorting_1">24/08/2023</td>
+                                      <td class="no-sort">
+                                        <a target="_blank" href="job/notice/177799c5f8e487e8587bb64ad80af827">Updates</a>  || <a target="_blank" href="job/info/177799c5f8e487e8587bb64ad80af827">View &amp; Apply</a> 
+                                     </td>
+                                  </tr><tr role="row" class="odd">
+                                      <td class="py-0"> Realization Technologies</td>
+                                      <td data-order="2023/08/25">25/08/2023</td>
+                                      <td data-order="2023/08/24" class="sorting_1">24/08/2023</td>
+                                      <td class="no-sort">
+                                        <a target="_blank" href="job/notice/f5a4616ae849f1592efd5715e7c377cb">Updates</a>  || <a target="_blank" href="job/info/f5a4616ae849f1592efd5715e7c377cb">View &amp; Apply</a> 
+                                     </td>
+                                  </tr><tr role="row" class="even">
+                                      <td class="py-0"> MAQ Software</td>
+                                      <td data-order="2023/08/25">25/08/2023</td>
+                                      <td data-order="2023/08/23" class="sorting_1">23/08/2023</td>
+                                      <td class="no-sort">
+                                        <a target="_blank" href="job/notice/dbf1a96c700d3c19576763fcebb2eaa3">Updates</a>  || <a target="_blank" href="job/info/dbf1a96c700d3c19576763fcebb2eaa3">View &amp; Apply</a> 
+                                     </td>
+                                  </tr><tr role="row" class="odd">
+                                      <td class="py-0"> TATA Steel</td>
+                                      <td data-order="2023/08/24">24/08/2023</td>
+                                      <td data-order="2023/08/23" class="sorting_1">23/08/2023</td>
+                                      <td class="no-sort">
+                                        <a target="_blank" href="job/notice/2edb2cdc8bce614ab408f5acfaa3c397">Updates</a>  || <a target="_blank" href="job/info/2edb2cdc8bce614ab408f5acfaa3c397">View &amp; Apply</a> 
+                                     </td>
+                                  </tr><tr role="row" class="even">
+                                      <td class="py-0"> GEP</td>
+                                      <td data-order="2023/08/22">22/08/2023</td>
+                                      <td data-order="2023/08/22" class="sorting_1">22/08/2023</td>
+                                      <td class="no-sort">
+                                        <a target="_blank" href="job/notice/6e725c064981934803f352e4bc61e84f">Updates</a>  || PPO  
+                                     </td>
+                                  </tr><tr role="row" class="odd">
+                                      <td class="py-0"> Société Générale</td>
+                                      <td data-order="2023/08/23">23/08/2023</td>
+                                      <td data-order="2023/08/21" class="sorting_1">21/08/2023</td>
+                                      <td class="no-sort">
+                                        <a target="_blank" href="job/notice/d1d9c83229fb9e3bc23865871939a7cc">Updates</a>  || <a target="_blank" href="job/info/d1d9c83229fb9e3bc23865871939a7cc">View &amp; Apply</a> 
+                                     </td>
+                                  </tr><tr role="row" class="even">
+                                      <td class="py-0"> NPCI</td>
+                                      <td data-order="2023/08/18">18/08/2023</td>
+                                      <td data-order="2023/08/18" class="sorting_1">18/08/2023</td>
+                                      <td class="no-sort">
+                                        <a target="_blank" href="job/notice/3a48f03ccf4def9f1c3718599225305e">Updates</a>  || PPO  
+                                     </td>
+                                  </tr><tr role="row" class="odd">
+                                      <td class="py-0"> Tata AIG General Insurance Company Limited</td>
+                                      <td data-order="2023/08/20">20/08/2023</td>
+                                      <td data-order="2023/08/18" class="sorting_1">18/08/2023</td>
+                                      <td class="no-sort">
+                                        <a target="_blank" href="job/notice/aba5d869a9d77c3cc6ce78449c29f090">Updates</a>  || <a target="_blank" href="job/info/aba5d869a9d77c3cc6ce78449c29f090">View &amp; Apply</a> 
+                                     </td>
+                                  </tr><tr role="row" class="even">
+                                      <td class="py-0"> Alight Solutions  </td>
+                                      <td data-order="2023/08/17">17/08/2023</td>
+                                      <td data-order="2023/08/17" class="sorting_1">17/08/2023</td>
+                                      <td class="no-sort">
+                                        <a target="_blank" href="job/notice/5fe45072b8d72f170a5815e4a8df3f3a">Updates</a>  || <a target="_blank" href="job/info/5fe45072b8d72f170a5815e4a8df3f3a">View &amp; Apply</a> 
+                                     </td>
+                                  </tr><tr role="row" class="odd">
+                                      <td class="py-0"> Fastenal</td>
+                                      <td data-order="2023/08/21">21/08/2023</td>
+                                      <td data-order="2023/08/17" class="sorting_1">17/08/2023</td>
+                                      <td class="no-sort">
+                                        <a target="_blank" href="job/notice/9fbbd34ee58f650c4f1eeee342bd24c0">Updates</a>  || <a target="_blank" href="job/info/9fbbd34ee58f650c4f1eeee342bd24c0">View &amp; Apply</a> 
+                                     </td>
+                                  </tr><tr role="row" class="even">
+                                      <td class="py-0"> Tata Metaliks Ltd.</td>
+                                      <td data-order="2023/08/17">17/08/2023</td>
+                                      <td data-order="2023/08/17" class="sorting_1">17/08/2023</td>
+                                      <td class="no-sort">
+                                        <a target="_blank" href="job/notice/34fa20f825515a73160948adbb4e7514">Updates</a>  || PPO  
+                                     </td>
+                                  </tr><tr role="row" class="odd">
+                                      <td class="py-0"> TATA Steel</td>
+                                      <td data-order="2023/08/18">18/08/2023</td>
+                                      <td data-order="2023/08/17" class="sorting_1">17/08/2023</td>
+                                      <td class="no-sort">
+                                        <a target="_blank" href="job/notice/6a54eb830e015555734affd4665eaf3a">Updates</a>  || <a target="_blank" href="job/info/6a54eb830e015555734affd4665eaf3a">View &amp; Apply</a> 
+                                     </td>
+                                  </tr><tr role="row" class="even">
+                                      <td class="py-0"> Futures First Info Services Pvt. Ltd.</td>
+                                      <td data-order="2023/08/22">22/08/2023</td>
+                                      <td data-order="2023/08/17" class="sorting_1">17/08/2023</td>
+                                      <td class="no-sort">
+                                        <a target="_blank" href="job/notice/f54ec0e37d7aa2c17b5d119a0fdd9ae9">Updates</a>  || <a target="_blank" href="job/info/f54ec0e37d7aa2c17b5d119a0fdd9ae9">View &amp; Apply</a> 
+                                     </td>
+                                  </tr><tr role="row" class="odd">
+                                      <td class="py-0"> Intuit </td>
+                                      <td data-order="2023/08/20">20/08/2023</td>
+                                      <td data-order="2023/08/16" class="sorting_1">16/08/2023</td>
+                                      <td class="no-sort">
+                                        <a target="_blank" href="job/notice/8952824e2a1c2957083d2594d14b5996">Updates</a>  || <a target="_blank" href="job/info/8952824e2a1c2957083d2594d14b5996">View &amp; Apply</a> 
+                                     </td>
+                                  </tr><tr role="row" class="even">
+                                      <td class="py-0"> Salesforce</td>
+                                      <td data-order="2023/08/16">16/08/2023</td>
+                                      <td data-order="2023/08/16" class="sorting_1">16/08/2023</td>
+                                      <td class="no-sort">
+                                        <a target="_blank" href="job/notice/233813e86a521897248acd57b52a53ad">Updates</a>  || PPO  
+                                     </td>
+                                  </tr><tr role="row" class="odd">
+                                      <td class="py-0"> Fastenal</td>
+                                      <td data-order="2023/08/17">17/08/2023</td>
+                                      <td data-order="2023/08/16" class="sorting_1">16/08/2023</td>
+                                      <td class="no-sort">
+                                        <a target="_blank" href="job/notice/de6464ed967c7c6185badc41496f9455">Updates</a>  || <a target="_blank" href="job/info/de6464ed967c7c6185badc41496f9455">View &amp; Apply</a> 
+                                     </td>
+                                  </tr><tr role="row" class="even">
+                                      <td class="py-0"> Walmart Global Tech</td>
+                                      <td data-order="2023/08/14">14/08/2023</td>
+                                      <td data-order="2023/08/14" class="sorting_1">14/08/2023</td>
+                                      <td class="no-sort">
+                                        <a target="_blank" href="job/notice/7e2e9f249b321ba4322ba76f3e4a8a91">Updates</a>  || PPO  
+                                     </td>
+                                  </tr><tr role="row" class="odd">
+                                      <td class="py-0"> Infineon Technologies</td>
+                                      <td data-order="2023/08/12">12/08/2023</td>
+                                      <td data-order="2023/08/11" class="sorting_1">11/08/2023</td>
+                                      <td class="no-sort">
+                                        <a target="_blank" href="job/notice/978b1d8723bb8d3e346b12407cc47d52">Updates</a>  || <a target="_blank" href="job/info/978b1d8723bb8d3e346b12407cc47d52">View &amp; Apply</a> 
+                                     </td>
+                                  </tr><tr role="row" class="even">
+                                      <td class="py-0"> Oracle GBU </td>
+                                      <td data-order="2023/08/12">12/08/2023</td>
+                                      <td data-order="2023/08/10" class="sorting_1">10/08/2023</td>
+                                      <td class="no-sort">
+                                        <a target="_blank" href="job/notice/efa5b95fb089dfac16e8e360cb0c93c9">Updates</a>  || <a target="_blank" href="job/info/efa5b95fb089dfac16e8e360cb0c93c9">View &amp; Apply</a> 
+                                     </td>
+                                  </tr><tr role="row" class="odd">
+                                      <td class="py-0"> Siemens EDA India Private Limited</td>
+                                      <td data-order="2023/08/10">10/08/2023</td>
+                                      <td data-order="2023/08/09" class="sorting_1">09/08/2023</td>
+                                      <td class="no-sort">
+                                        <a target="_blank" href="job/notice/90f7b80f3c609f3b48965b0aa5279cb6">Updates</a>  || <a target="_blank" href="job/info/90f7b80f3c609f3b48965b0aa5279cb6">View &amp; Apply</a> 
+                                     </td>
+                                  </tr><tr role="row" class="even">
+                                      <td class="py-0"> AtomOne Technologies</td>
+                                      <td data-order="2023/08/08">08/08/2023</td>
+                                      <td data-order="2023/08/08" class="sorting_1">08/08/2023</td>
+                                      <td class="no-sort">
+                                        <a target="_blank" href="job/notice/31ad207bb23540eb6b3cc37f6c31324d">Updates</a>  || <a target="_blank" href="job/info/31ad207bb23540eb6b3cc37f6c31324d">View &amp; Apply</a> 
+                                     </td>
+                                  </tr><tr role="row" class="odd">
+                                      <td class="py-0"> Frappe</td>
+                                      <td data-order="2023/08/17">17/08/2023</td>
+                                      <td data-order="2023/08/07" class="sorting_1">07/08/2023</td>
+                                      <td class="no-sort">
+                                        <a target="_blank" href="job/notice/84d35f5c2b198f922590fa874a48cf5c">Updates</a>  || <a target="_blank" href="job/info/84d35f5c2b198f922590fa874a48cf5c">View &amp; Apply</a> 
+                                     </td>
+                                  </tr></tbody>
+                    </table></div></div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="job-listings_info" role="status" aria-live="polite">Showing 1 to 25 of 51 entries</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="job-listings_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="job-listings_previous"><a href="#" aria-controls="job-listings" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="job-listings" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="job-listings" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="job-listings" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item next" id="job-listings_next"><a href="#" aria-controls="job-listings" data-dt-idx="4" tabindex="0" class="page-link">Next</a></li></ul></div></div></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5 stretch-card">
+               <div class="card" style="background-color:#D5EEFB">
+    <div class="card-header d-flex justify-content-between align-items-center" style="background-color:#06adff">
+        <div class="card-title mb-1 d-block"><i class="mdi mdi-bullhorn"></i> Notification</div>
+        <div class=" d-block"><a href="newsevents" style="color:white;">View All</a></div>
+    </div>
+    <div class="card-body p-2"> 
+         
+                    <div id="newseventsx_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer"><div id="newseventsx_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="newseventsx"></label></div><div class="dataTables_scroll"><div class="dataTables_scrollHead" style="overflow: hidden; position: relative; border: 0px; width: 100%;"><div class="dataTables_scrollHeadInner" style="box-sizing: content-box; width: 282px; padding-right: 0px;"><table class="table table-sm table-bordered table-striped dataTable no-footer" role="grid" style="margin-left: 0px; width: 282px;"><thead style="display:none;">
+                                  <tr role="row"><th class="sorting_desc" tabindex="0" aria-controls="newseventsx" rowspan="1" colspan="1" style="width: 0px;" aria-sort="descending" aria-label="Notification Details: activate to sort column ascending">Notification Details</th></tr>
+                                </thead></table></div></div><div class="dataTables_scrollBody" style="position: relative; overflow: auto; max-height: 96vh; width: 100%;"><table id="newseventsx" class="table table-sm table-bordered table-striped dataTable no-footer" role="grid" style="width: 100%;"><thead style="display:none;">
+                                  <tr role="row" style="height: 2px;"><th class="sorting" aria-controls="newseventsx" rowspan="1" colspan="1" style="width: 0px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;"><div class="dataTables_sizing" style="height:0;overflow:hidden;">Notification Details</div></th></tr>
+                                </thead>
+                                
+                                <tbody><tr role="row" class="odd"><td data-order="2023/08/26 14:29:05" class="sorting_1"> <div class="d-block w-100"><h6 class="text-primary pl-0 mb-1"><a href="newsupdates/07a79781d9f35b6849753c58730e089b" class=" d-inline-block ">FUTURES FIRST INFO SERVICES PVT. LTD. Test Platform</a></h6><small class="d-flex justify-content-between"><i class="pr-1 text-secondary"><b class="text-secondary">News</b>&nbsp;&nbsp;  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 26-08-2023 14:29 IST</i></i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/26 00:57:39" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="resultlist/104/8029927b1c8e223dd9b9e02ef3dab191">Fastenal  : Initial Short listing</a></h6><small class="mb-2"> <b class="text-secondary">Job  Result </b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 26-08-2023 00:57 IST</i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/08/25 21:55:37" class="sorting_1"> <div class="d-block w-100"><h6 class="text-primary pl-0 mb-1"><a href="newsupdates/f3c7b8e39fe1c702a20d798368cd91c7" class=" d-inline-block ">[Important] - Resume Building Session </a></h6><small class="d-flex justify-content-between"><i class="pr-1 text-secondary"><b class="text-secondary">News</b>&nbsp;&nbsp;  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 25-08-2023 21:55 IST</i></i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/25 18:55:51" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="resultlist/104/8029927b1c8e223dd9b9e02ef3dab191">Fastenal  : Initial Short listing</a></h6><small class="mb-2"> <b class="text-secondary">Job  Result </b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 25-08-2023 18:55 IST</i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/08/25 18:55:47" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="resultlist/104/8029927b1c8e223dd9b9e02ef3dab191">Fastenal  : Initial Short listing</a></h6><small class="mb-2"> <b class="text-secondary">Job  Result </b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 25-08-2023 18:55 IST</i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/25 17:09:58" class="sorting_1"> <div class="d-block w-100"><h6 class="text-primary pl-0 mb-1"><a href="newsupdates/44b7a355b48b700fe14d855100ecec04" class=" d-inline-block ">FUTURES FIRST INFO SERVICES PVT. LTD. Shortlisted Candidates</a></h6><small class="d-flex justify-content-between"><i class="pr-1 text-secondary"><b class="text-secondary">News</b>&nbsp;&nbsp;  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 25-08-2023 17:09 IST</i></i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/08/25 16:24:46" class="sorting_1"> <div class="d-block w-100"><h6 class="text-primary pl-0 mb-1"><a href="newsupdates/bd2d1775c1bf0bd3075c106167e6225c" class=" d-inline-block ">SOCIETE GENERALE REGISTRATION</a></h6><small class="d-flex justify-content-between"><i class="pr-1 text-secondary"><b class="text-secondary">Job</b>&nbsp;&nbsp;  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 25-08-2023 16:24 IST</i></i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/25 13:29:10" class="sorting_1"> <div class="d-block w-100"><h6 class="text-primary pl-0 mb-1"><a href="newsupdates/cba72c479db39e4a9e621d8980fb6754" class=" d-inline-block ">Schneider Electric</a></h6><small class="d-flex justify-content-between"><i class="pr-1 text-secondary"><b class="text-secondary">Event</b>&nbsp;&nbsp;  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 25-08-2023 13:29 IST</i></i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/08/25 13:03:35" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/9fbbd34ee58f650c4f1eeee342bd24c0">Fastenal : Initial Short listing</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 25.08.2023 13:03:35 IST</i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/25 09:31:01" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/aba5d869a9d77c3cc6ce78449c29f090">Tata AIG General Insurance Company Limited : INTERVIEWS - HR</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 25.08.2023 09:31:01 IST</i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/08/25 07:16:58" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/aba5d869a9d77c3cc6ce78449c29f090">Tata AIG General Insurance Company Limited : INTERVIEWS - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 25.08.2023 07:16:58 IST</i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/24 17:49:22" class="sorting_1"> <div class="d-block w-100"><h6 class="text-primary pl-0 mb-1"><a href="newsupdates/4d067d513ca947c2db7d3d5cae8d14f3" class=" d-inline-block ">LinkedIn Summer Internship</a></h6><small class="d-flex justify-content-between"><i class="pr-1 text-secondary"><b class="text-secondary">News</b>&nbsp;&nbsp;  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 24-08-2023 17:49 IST</i></i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/08/24 17:36:03" class="sorting_1"> <div class="d-block w-100"><h6 class="text-primary pl-0 mb-1"><a href="newsupdates/d1fa93df87151b09eb8ff3753574ac2d" class=" d-inline-block ">TATA AIG PPT and PI Shortlisted Candidates</a></h6><small class="d-flex justify-content-between"><i class="pr-1 text-secondary"><b class="text-secondary">News</b>&nbsp;&nbsp;  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 24-08-2023 17:36 IST</i></i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/24 17:30:28" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="resultlist/93/9f7e31654edc06992ddfe63819a0ff1a">Oracle GBU   : INTERVIEWS - HR</a></h6><small class="mb-2"> <b class="text-secondary">Job Final Result </b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 24-08-2023 17:30 IST</i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/08/24 16:08:20" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="resultlist/97/bea4bb368c7c4c5bc9dc8f2f4ebd1a7a">Fastenal  : INTERVIEWS - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job  Result </b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 24-08-2023 16:08 IST</i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/24 14:52:58" class="sorting_1"> <div class="d-block w-100"><h6 class="text-primary pl-0 mb-1"><a href="newsupdates/971c5f23e96b35d8f082612008176568" class=" d-inline-block ">Resume Building Session - Update (K-20s and K-21s)</a></h6><small class="d-flex justify-content-between"><i class="pr-1 text-secondary"><b class="text-secondary">News</b>&nbsp;&nbsp;  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 24-08-2023 14:52 IST</i></i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/08/24 14:40:53" class="sorting_1"> <div class="d-block w-100"><h6 class="text-primary pl-0 mb-1"><a href="newsupdates/dde347da1470989bdb702f2ddfc668e5" class=" d-inline-block ">Taaza Tech Test Shortlist</a></h6><small class="d-flex justify-content-between"><i class="pr-1 text-secondary"><b class="text-secondary">News</b>&nbsp;&nbsp;  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 24-08-2023 14:40 IST</i></i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/24 12:45:15" class="sorting_1"> <div class="d-block w-100"><h6 class="text-primary pl-0 mb-1"><a href="newsupdates/3c3481e71a21060e9fe9cf8323584b47" class=" d-inline-block ">Seating plan for Intuit OT</a></h6><small class="d-flex justify-content-between"><i class="pr-1 text-secondary"><b class="text-secondary">News</b>&nbsp;&nbsp;  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 24-08-2023 12:45 IST</i></i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/08/24 12:03:19" class="sorting_1"> <div class="d-block w-100"><h6 class="text-primary pl-0 mb-1"><a href="newsupdates/059ce20225a149a397d59483629c23da" class=" d-inline-block ">Fastenal- FTE+6 month OA date</a></h6><small class="d-flex justify-content-between"><i class="pr-1 text-secondary"><b class="text-secondary">News</b>&nbsp;&nbsp;  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 24-08-2023 12:03 IST</i></i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/24 10:38:04" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/de6464ed967c7c6185badc41496f9455">Fastenal : INTERVIEWS - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 24.08.2023 10:38:04 IST</i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/08/24 10:36:33" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/aba5d869a9d77c3cc6ce78449c29f090">Tata AIG General Insurance Company Limited : Pre-Placement Talk</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 24.08.2023 10:36:33 IST</i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/24 10:00:53" class="sorting_1"> <div class="d-block w-100"><h6 class="text-primary pl-0 mb-1"><a href="newsupdates/7290b25c515741dcb7c5d5d1b8966f89" class=" d-inline-block ">MAQ Software - Important </a></h6><small class="d-flex justify-content-between"><i class="pr-1 text-secondary"><b class="text-secondary">News</b>&nbsp;&nbsp;  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 24-08-2023 10:00 IST</i></i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/08/23 19:53:27" class="sorting_1"> <div class="d-block w-100"><h6 class="text-primary pl-0 mb-1"><a href="newsupdates/6d69758a078d7a6d130d19d9575b6153" class=" d-inline-block ">Tata Steel Shortlisting for Cultural Assessment</a></h6><small class="d-flex justify-content-between"><i class="pr-1 text-secondary"><b class="text-secondary">News</b>&nbsp;&nbsp;  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 23-08-2023 19:53 IST</i></i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/23 19:35:53" class="sorting_1"> <div class="d-block w-100"><h6 class="text-primary pl-0 mb-1"><a href="newsupdates/d16c43ea9906c2875697965b703a816d" class=" d-inline-block ">Marks/Backlog Updation on TnP Portal </a></h6><small class="d-flex justify-content-between"><i class="pr-1 text-secondary"><b class="text-secondary">News</b>&nbsp;&nbsp;  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 23-08-2023 19:35 IST</i></i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/08/23 14:10:12" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/6a54eb830e015555734affd4665eaf3a">TATA Steel : ASSESSMENT TEST - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 23.08.2023 14:10:12 IST</i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/23 13:46:41" class="sorting_1"> <div class="d-block w-100"><h6 class="text-primary pl-0 mb-1"><a href="newsupdates/112abe5f1d8cc861f4f1661e91035f9a" class=" d-inline-block ">Fastenal - FTE+6 Month </a></h6><small class="d-flex justify-content-between"><i class="pr-1 text-secondary"><b class="text-secondary">News</b>&nbsp;&nbsp;  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 23-08-2023 13:46 IST</i></i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/08/23 13:01:03" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="resultlist/92/6fc1a2ae9e1577726e8198a0edcc8938">Logic Fruit Technology Pvt Ltd  : INTERVIEWS - HR</a></h6><small class="mb-2"> <b class="text-secondary">Job Final Result </b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 23-08-2023 13:01 IST</i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/23 12:35:06" class="sorting_1"> <div class="d-block w-100"><h6 class="text-primary pl-0 mb-1"><a href="newsupdates/1adaaa25315bb39d5a099c34549bbe42" class=" d-inline-block ">Infineon Technologies-Final Select</a></h6><small class="d-flex justify-content-between"><i class="pr-1 text-secondary"><b class="text-secondary">News</b>&nbsp;&nbsp;  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 23-08-2023 12:35 IST</i></i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/08/23 11:10:15" class="sorting_1"> <div class="d-block w-100"><h6 class="text-primary pl-0 mb-1"><a href="newsupdates/88ece078b9a51675398e8880f6b92157" class=" d-inline-block ">ORACLE GBU SELECTED CANDIDATES </a></h6><small class="d-flex justify-content-between"><i class="pr-1 text-secondary"><b class="text-secondary">News</b>&nbsp;&nbsp;  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 23-08-2023 11:10 IST</i></i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/23 10:59:58" class="sorting_1"> <div class="d-block w-100"><h6 class="text-primary pl-0 mb-1"><a href="newsupdates/3afaa1073749c479325435d1321fc739" class=" d-inline-block ">Amazon - Enabling Abilities</a></h6><small class="d-flex justify-content-between"><i class="pr-1 text-secondary"><b class="text-secondary">News</b>&nbsp;&nbsp;  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 23-08-2023 10:59 IST</i></i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/08/23 10:58:49" class="sorting_1"> <div class="d-block w-100"><h6 class="text-primary pl-0 mb-1"><a href="newsupdates/6b26abe830636e4f2872d83c93db11eb" class=" d-inline-block ">[Reminder]- Resume Building Session</a></h6><small class="d-flex justify-content-between"><i class="pr-1 text-secondary"><b class="text-secondary">News</b>&nbsp;&nbsp;  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 23-08-2023 10:58 IST</i></i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/23 05:35:27" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/efa5b95fb089dfac16e8e360cb0c93c9">Oracle GBU  : INTERVIEWS - HR</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 23.08.2023 05:35:27 IST</i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/08/22 20:16:25" class="sorting_1"> <div class="d-block w-100"><h6 class="text-primary pl-0 mb-1"><a href="newsupdates/552c53fff7b2d8ee5b3ea7245a952044" class=" d-inline-block ">Tata Steel Cultural Assessment Updates</a></h6><small class="d-flex justify-content-between"><i class="pr-1 text-secondary"><b class="text-secondary">News</b>&nbsp;&nbsp;  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 22-08-2023 20:16 IST</i></i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/22 17:44:02" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="resultlist/91/6fc1a2ae9e1577726e8198a0edcc8938">Logic Fruit Technology Pvt Ltd  : Initial Short listing</a></h6><small class="mb-2"> <b class="text-secondary">Job  Result </b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 22-08-2023 17:44 IST</i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/08/22 12:17:20" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/1824fd7d978f5bac6b1445d84f2ea6b2">Logic Fruit Technology Pvt Ltd : INTERVIEWS - HR</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 22.08.2023 12:17:20 IST</i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/22 12:13:10" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="resultlist/90/883f0a58f040e6613c9d8c4f54e4e29b">GEP (PPO) : INTERVIEWS - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job Final Result </b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 22-08-2023 12:13 IST</i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/08/22 12:07:27" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/1824fd7d978f5bac6b1445d84f2ea6b2">Logic Fruit Technology Pvt Ltd : Initial Short listing</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 22.08.2023 12:07:27 IST</i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/22 08:53:00" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="resultlist/89/bea4bb368c7c4c5bc9dc8f2f4ebd1a7a">Fastenal  : ASSESSMENT TEST - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job  Result </b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 22-08-2023 08:53 IST</i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/08/22 06:41:40" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/6e725c064981934803f352e4bc61e84f">GEP : INTERVIEWS - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 22.08.2023 06:41:40 IST</i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/22 03:22:42" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/de6464ed967c7c6185badc41496f9455">Fastenal : ASSESSMENT TEST - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 22.08.2023 03:22:42 IST</i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/08/21 11:37:25" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="resultlist/43/6fc1a2ae9e1577726e8198a0edcc8938">Logic Fruit Technology Pvt Ltd  : ASSESSMENT TEST - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job  Result </b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 21-08-2023 11:37 IST</i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/19 10:37:10" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="resultlist/88/0f8d7c401197175ec292002ba6f49b58"> Miebach Consulting India Pvt. Ltd.  : INTERVIEWS - HR</a></h6><small class="mb-2"> <b class="text-secondary">Job Final Result </b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 19-08-2023 10:37 IST</i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/08/19 10:35:53" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="resultlist/79/0f8d7c401197175ec292002ba6f49b58"> Miebach Consulting India Pvt. Ltd.  : INTERVIEWS - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job  Result </b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 19-08-2023 10:35 IST</i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/19 05:06:50" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/dd5bf297d459ceb3beaccde76dabf59b"> Miebach Consulting India Pvt. Ltd. : INTERVIEWS - HR</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 19.08.2023 05:06:50 IST</i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/08/18 22:35:58" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="resultlist/77/bea4bb368c7c4c5bc9dc8f2f4ebd1a7a">Fastenal  : Initial Short listing</a></h6><small class="mb-2"> <b class="text-secondary">Job  Result </b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 18-08-2023 22:35 IST</i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/18 19:14:50" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="resultlist/78/0f8d7c401197175ec292002ba6f49b58"> Miebach Consulting India Pvt. Ltd.  : ASSESSMENT TEST - Aptitude</a></h6><small class="mb-2"> <b class="text-secondary">Job  Result </b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 18-08-2023 19:14 IST</i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/08/18 15:27:02" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="resultlist/76/1d0f0faf146bb4e24bc38a9cf3938bf3">NPCI (PPO) : INTERVIEWS - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job Final Result </b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 18-08-2023 15:27 IST</i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/18 13:45:39" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/dd5bf297d459ceb3beaccde76dabf59b"> Miebach Consulting India Pvt. Ltd. : INTERVIEWS - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 18.08.2023 13:45:39 IST</i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/08/18 13:44:02" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/dd5bf297d459ceb3beaccde76dabf59b"> Miebach Consulting India Pvt. Ltd. : ASSESSMENT TEST - Aptitude</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 18.08.2023 13:44:02 IST</i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/18 12:38:25" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="resultlist/75/0f8d7c401197175ec292002ba6f49b58"> Miebach Consulting India Pvt. Ltd.  : Group Discussion</a></h6><small class="mb-2"> <b class="text-secondary">Job  Result </b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 18-08-2023 12:38 IST</i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/08/18 11:25:50" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/de6464ed967c7c6185badc41496f9455">Fastenal : Initial Short listing</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 18.08.2023 11:25:50 IST</i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/18 09:56:14" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/3a48f03ccf4def9f1c3718599225305e">NPCI : INTERVIEWS - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 18.08.2023 09:56:14 IST</i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/08/18 07:06:16" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/dd5bf297d459ceb3beaccde76dabf59b"> Miebach Consulting India Pvt. Ltd. : Group Discussion</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 18.08.2023 07:06:16 IST</i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/17 21:56:14" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="resultlist/74/def418aeda9a7610b0433f4d0acc28d7">Siemens EDA India Private Limited  : INTERVIEWS - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job Final Result </b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 17-08-2023 21:56 IST</i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/08/17 21:52:43" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="resultlist/50/def418aeda9a7610b0433f4d0acc28d7">Siemens EDA India Private Limited  : Initial Short listing</a></h6><small class="mb-2"> <b class="text-secondary">Job  Result </b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 17-08-2023 21:52 IST</i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/17 19:08:36" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="resultlist/58/d72ff9dd24839a08a4ced3e26573adec">Atlassian  : INTERVIEWS - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job  Result </b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 17-08-2023 19:08 IST</i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/08/17 17:37:49" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="resultlist/73/cb264155bb9f502e547a94f61b491169">Flipkart (Instakart Services Pvt.Ltd)  : INTERVIEWS - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job Final Result </b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 17-08-2023 17:37 IST</i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/17 16:25:45" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/90f7b80f3c609f3b48965b0aa5279cb6">Siemens EDA India Private Limited : INTERVIEWS - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 17.08.2023 16:25:45 IST</i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/08/17 11:59:23" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/2f96a54f04b2c72f33039796bf7461d7">Flipkart (Instakart Services Pvt.Ltd) : INTERVIEWS - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 17.08.2023 11:59:23 IST</i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/17 10:05:08" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/34fa20f825515a73160948adbb4e7514">Tata Metaliks Ltd. : INTERVIEWS - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 17.08.2023 10:05:08 IST</i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/08/16 10:45:39" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/233813e86a521897248acd57b52a53ad">Salesforce : INTERVIEWS - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 16.08.2023 10:45:39 IST</i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/16 06:02:53" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/ab0c941c8ed65e023627988235f6aff0">Atlassian : INTERVIEWS - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 16.08.2023 06:02:53 IST</i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/08/16 05:49:25" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/ab0c941c8ed65e023627988235f6aff0">Atlassian : ASSESSMENT TEST - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 16.08.2023 05:49:25 IST</i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/14 18:16:29" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/978b1d8723bb8d3e346b12407cc47d52">Infineon Technologies : Initial Short listing</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 14.08.2023 18:16:29 IST</i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/08/14 16:24:07" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/dd5bf297d459ceb3beaccde76dabf59b"> Miebach Consulting India Pvt. Ltd. : Initial Short listing</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 14.08.2023 16:24:07 IST</i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/14 16:23:16" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/dd5bf297d459ceb3beaccde76dabf59b"> Miebach Consulting India Pvt. Ltd. : Pre-Placement Talk</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 14.08.2023 16:23:16 IST</i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/08/14 10:02:14" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/7e2e9f249b321ba4322ba76f3e4a8a91">Walmart Global Tech : INTERVIEWS - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 14.08.2023 10:02:14 IST</i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/14 08:49:31" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/0c37b9c806a258e8c4d764a9b22b4e6f">EY India : INTERVIEWS - HR</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 14.08.2023 08:49:31 IST</i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/08/14 07:12:54" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/90f7b80f3c609f3b48965b0aa5279cb6">Siemens EDA India Private Limited : Initial Short listing</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 14.08.2023 07:12:54 IST</i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/11 11:01:22" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/0c37b9c806a258e8c4d764a9b22b4e6f">EY India : INTERVIEWS - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 11.08.2023 11:01:22 IST</i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/08/09 06:38:13" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/0c37b9c806a258e8c4d764a9b22b4e6f">EY India : Pre-Placement Talk</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 09.08.2023 06:38:13 IST</i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/08 14:06:33" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/26e1cdc416470cfc6c50a9d405889512">Media.net : INTERVIEWS - HR</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 08.08.2023 14:06:33 IST</i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/08/08 06:37:00" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/31ad207bb23540eb6b3cc37f6c31324d">AtomOne Technologies : INTERVIEWS - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 08.08.2023 06:37:00 IST</i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/08 05:40:58" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/1824fd7d978f5bac6b1445d84f2ea6b2">Logic Fruit Technology Pvt Ltd : ASSESSMENT TEST - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 08.08.2023 05:40:58 IST</i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/08/04 13:26:47" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/9c039851263b197430a340e2900c93e2">Arcesium Pvt. Ltd. : INTERVIEWS - HR</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 04.08.2023 13:26:47 IST</i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/04 03:32:35" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/26e1cdc416470cfc6c50a9d405889512">Media.net : INTERVIEWS - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 04.08.2023 03:32:35 IST</i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/08/03 11:03:31" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/d4c2768292e161276f5d7ef988f334c8">Atlassian : INTERVIEWS - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 03.08.2023 11:03:31 IST</i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/03 09:17:48" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/2f96a54f04b2c72f33039796bf7461d7">Flipkart (Instakart Services Pvt.Ltd) : ASSESSMENT TEST - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 03.08.2023 09:17:48 IST</i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/08/03 07:40:50" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/9c039851263b197430a340e2900c93e2">Arcesium Pvt. Ltd. : Pre-Placement Talk</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 03.08.2023 07:40:50 IST</i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/02 08:31:02" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/58cd270c94573bd20d4b0f9c167d5519">Truminds Software Systems : INTERVIEWS - HR</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 02.08.2023 08:31:02 IST</i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/08/02 08:17:48" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/51027005217a7e2e5ceb6590e641f912">Axis Bank : INTERVIEWS - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 02.08.2023 08:17:48 IST</i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/02 07:56:15" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/26e1cdc416470cfc6c50a9d405889512">Media.net : ASSESSMENT TEST - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 02.08.2023 07:56:15 IST</i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/08/02 07:26:27" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/5d305f10897098f7b5b4225bc7838a77">Google  : INTERVIEWS - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 02.08.2023 07:26:27 IST</i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/01 14:22:37" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/38f86eee292f8e099d168a9015b9a372">Sprinklr : INTERVIEWS - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 01.08.2023 14:22:37 IST</i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/08/01 13:38:57" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/9c039851263b197430a340e2900c93e2">Arcesium Pvt. Ltd. : ASSESSMENT TEST - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 01.08.2023 13:38:57 IST</i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/08/01 06:13:56" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/6151c3cfb7cc188cda61b7fa226d18fb">Schneider Electric : Pre-Placement Talk</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 01.08.2023 06:13:56 IST</i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/07/31 16:55:52" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/2f96a54f04b2c72f33039796bf7461d7">Flipkart (Instakart Services Pvt.Ltd) : Pre-Placement Talk</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 31.07.2023 16:55:52 IST</i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/07/31 16:16:56" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/d5f9093c678d77bdf107da31a5b9de3e">Microsoft : INTERVIEWS - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 31.07.2023 16:16:56 IST</i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/07/27 13:30:24" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/38f86eee292f8e099d168a9015b9a372">Sprinklr : ASSESSMENT TEST - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 27.07.2023 13:30:24 IST</i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/07/27 09:11:36" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/d04b9f2a2537b2b91da09f7fc2adebaf">Arcesium : INTERVIEWS - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 27.07.2023 09:11:36 IST</i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/07/26 05:28:21" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/c635faf81dc2b3a9bb27457102b1c225">Fastenal : INTERVIEWS - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 26.07.2023 05:28:21 IST</i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/07/26 04:45:59" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/a4e5685bda13cc5f37bdd2770b6b1882">Tata Steel Utilities &amp; Infrastructure Services Limited : INTERVIEWS - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 26.07.2023 04:45:59 IST</i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/07/25 11:03:37" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/0409b2c66cb858cee593ac2a852a50f2">Wells Fargo : INTERVIEWS - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 25.07.2023 11:03:37 IST</i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/07/25 06:51:09" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/e8b5368ae6d8e5c7359b6381bff5f39e">Texas Instruments : INTERVIEWS - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 25.07.2023 06:51:09 IST</i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/07/24 12:31:08" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/d5f9093c678d77bdf107da31a5b9de3e">Microsoft : ASSESSMENT TEST - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 24.07.2023 12:31:08 IST</i></small></div></td></tr><tr role="row" class="even"><td data-order="2023/07/21 09:28:01" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/b511e8e4fe2f54ae7631bb7ebe29c6ab">Salesforce : INTERVIEWS - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 21.07.2023 09:28:01 IST</i></small></div></td></tr><tr role="row" class="odd"><td data-order="2023/07/21 07:00:57" class="sorting_1"><div class="d-block"><h6 class="text-primary pl-0 mb-1"><a href="job/notice/d02602c01902256372417d2c3644c429">Sprinklr : INTERVIEWS - Technical</a></h6><small class="mb-2"> <b class="text-secondary">Job Update</b>  <i class="pr-1 text-secondary"> Date <span class="mdi mdi-calendar"></span> 21.07.2023 07:00:57 IST</i></small></div></td></tr></tbody></table></div></div></div> 
+    </div>
+    <div id="profile_notice_bg"></div>
+</div>
+            </div>
+             
+          </div>
+                </div>
+        <!-- content-wrapper ends --> 
+
+<!--Applied Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Applied in Company</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <ul><li>Flipkart (Instakart Services Pvt.Ltd)</li><li>Schneider Electric</li><li> Miebach Consulting India Pvt. Ltd.</li></ul>      </div>
+    </div>
+  </div>
+</div>
+
+<!--Eligible Modal -->
+<div class="modal fade" id="eligibleModal" tabindex="-1" aria-labelledby="eligibleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="eligibleModalLabel">Eligible in Company</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <ul><li>Flipkart (Instakart Services Pvt.Ltd)</li><li>Schneider Electric</li><li>Renault Nissan Tech</li><li> Miebach Consulting India Pvt. Ltd.</li><li>Futures First Info Services Pvt. Ltd.</li><li>Fastenal</li><li>Tata AIG General Insurance Company Limited</li><li>Realization Technologies</li><li>Frappe</li></ul>      </div>
+    </div>
+  </div>
+</div>
+<!--<a href="#" class="btn btn-lg btn-primary" id="sentMessage" data-toggle="modal" data-target="#largeModal">SOP</a>
+--> <div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">SOP</h4>
+          </div>
+          <div class="modal-body">
+            <h4 class="text-center">BIT Mesra Campus Placement SOP<br><span style="font-size:0.7em">(2023-24)</span></h4>
+            <h5>Full Time Employment (FTE)</h5>
+            <p>
+              <b>Categorisation of Recruiters</b><br>
+              The recruiters are categorised in three basic domains –
+              </p><ul>
+                <li><b>Type 1 – </b>IT Enabled Service Sectors.</li>
+                <li><b>Type 2 – </b>Any recruiter other than Type 1 recruiter.</li>
+                <li><b>Type 3 – </b>Dream Recruiter – A recruiter may be given a dream status on case-to-case basis, based on various parameters like the reputation of the recruiter in its domain, the time of visit, job profile, package offered, number of students applied and placed in a particular programme / branch.</li>
+              </ul>
+              <ul>
+                <li>The students who may opt orare allowed to participate in a Type 1 Industry– Any student from the eligible branch(es), allowed by the recruiter, who is unplaced and registered on the Placement Portal, may participate in the Placement process of Type 1 recruiter, provided he/she fulfils the eligibility criteria notified by the recruiter(s).</li>
+                <li>The students wo may opt or are allowed to participate in a Type 2 Industry – Any unplaced student or a student with offer(s) in Type 1 industry, registered on the Placement Portal may participate in placement process, subject to his/her fulfilment of the eligibility criterianotified by the recruiter(s). A candidate who already got placement in a Type 2 Industry shall not be allowed to sit for any other Type 2 Industry.</li>
+                <li>The students who may op or are allowed to participate in a Type 3 Industry – All students from eligible branch(es) registered on the Placement Portal, except for the students who have secured a PPO (Pre-Placement Offer) orhave landed a dream job,shall be allowed to participate in the process. Dream Offer / PPO will be the final offer for any student; he/she will not be allowed to sit for further placement processes. Dream job declaration shall be at the discretion of T&amp;P Division.</li>
+              </ul>
+            <p></p>
+            <p>
+              The processes where recruiters share a slot and a student is offered placement by all the recruiters in the shared slot, the student will have the option to select any one offer. A mail of regret must be sent by the student to the recruiter duly forwarded by T&amp;P Division.
+            </p>
+            <p>If a student gets placement offer after an internship when he/she is already placed through anon-campus placement drive, the acceptance of the same will be on the discretion of T&amp;P/ PAC (Placement Advisory Committee) in consultation with the company where the student is already placed.
+            </p>
+            <p>Six Months/ One Year Internship Programme <br>
+              All the eligible and registered students can participate in the internship process, irrespective of holding any FTE offer, if they have not secured any internship offer. <br>
+              It is mandatory to accept the Internship offer along with the FTE offer, if any, from the same organization.
+            </p>
+            <p>
+              </p><h5 class="text-center">Summer Internship Programme (SIP)</h5>
+              <p>If a student gets an on-campus summer internship offer, he/she will not be allowed to sit for any further internship process. It is mandatory to do the internship with the same organization.</p>
+              <h6 class="text-center">Note</h6>
+              <ul>
+                <li>The student who registers for any placement or internship process and does not appear for the same will be debarred from placement and internship facility. </li>
+                <li>Placement and Internship facilities are constrained by Macroeconomic factors. </li>
+                <li>T&amp;P Division reserves the right to take decision in the benefit of the stakeholders.</li>
+                <li>Placement of any student is not a claim / right. Institute shall provide open platform to all the eligible students as per placement guidelines.</li>
+                <li>Placement guidelines is subject to change and Placement Advisory Committee (PAC) has the authority and right to change, add, delete, or modify the guidelines from time to time based on the inputs, feedback and experience.</li>
+                <li>Violation of any placement / internship guidelines shall attract disciplinary action.</li>
+              </ul>
+              <h5>Placement Process</h5>
+              Registration on the Portal:
+              <ol>
+                <li>Students are required to activate their account on BIT Placement Portal (URL: tp.bitmesra.co.in)
+with their Roll No. A mail will be sent to their inbox (mail-id available on ERP) with User Id and Password to join the placement portal. </li>
+                <li>To participate in any placement/Internship drive they need to accept the Institute Placement Policy. The students first need to read and understand Placement SOP and after accepting the SOP
+they ought to strictly abide by the set rules and norms.</li>
+                <li>Students need to fill all the details required in ‘Build Your Resume’ section to complete their
+profile.</li>
+<li>Submit the proof for all the details by uploading related documents. The details will only be
+approved by your Faculty Coordinator after validating with uploaded documents.</li>
+                <li>Students must not enter their current academic details (i.e., CGPA and Backlog), it will be updated automatically from the data available on the Institute ERP system. All information added here will be reflected in the resume.</li>
+                
+                <li>After accepting the Placement SOP they can apply for any job where they are eligible.</li>
+              </ol>
+              Registration for recruitment processof any company:
+              <ul>
+                <li>The eligibility of a particular student is validated against the data available on the T&amp;P Portal at the time of sending the list to the recruiter. Once the list is forwarded no request will be considered for inclusion, even if a non-eligible student becomes eligible afterwards.</li>
+                <li>The job feed may be viewed by all the registered students, but the registration link ("Apply” button) is available only with the students eligible from the branches which are allowed, and the criteria mentioned by the recruiters for the process.</li>
+                <li>Students from eligible branches, ifthey satisfy the eligibility criteria, may apply for the process within the allowed time frame.</li>
+                <li>They must click on the “Apply” button. After successful registration, the "Apply" button changes to "Withdraw from the process" and clicking on the link (‘’Withdraw’’) will lead to deregistration from the process. The withdrawal is only possible within the last date/time of application.</li>
+              </ul>
+              Withdrawal after applying for a process:
+              <ol>
+                <li>STUDENTS ARE NOT ALLOWEDTO WITHDRAW FROM THE PROCESS post the closing date / time of registration process. They, however, may withdraw at any time before the process of registration closes.</li>
+                <li>The only exception allowed pertaining to # 1 is on those situations or events where a new service condition, service bond etc. are announced only during Pre-Placement Talk and which was not notified on the portal at the time of registration. The students should apply to the recruiter(s) only when they have verified the job profile, job description and their fitment.</li>
+                <li>Any registered student found absent or opted out at any stage of the process (Online/Written Test, Pre-Placement Talk, GD, PI etc.) shall not be allowed to participate in the Placement drives of any recruiter in future. The application of withdrawal owing to personal emergencies, or the intimation of sickness should be submitted in writing well in advance to the Training &amp; Placement Office ONLY. It may be forwarded through peers, if the applicant is not in a position to submit it in person.Once the process starts, no such intimation should be entertained, the students should be treated as absent and disciplinary measures shall be taken against the student.</li>
+              </ol>
+              During Presentations:
+              <ol>
+                <li>It is mandatory for all the registered students to attend the Pre-Placement Talk in formals and to report ON TIME for the presentation. Nobody will be allowed in the auditorium once the presentation begins.</li>
+                <li>Students are strictly advised not be in casual wear for the presentations. Any student, who is not in a presentable condition (shabbily dressed/unshaven/wearing floaters/slippers), shall not be allowed to participate in the process.</li>
+                <li>The students need to clarify all their doubts at the time of PPT. Ex. On-boarding process, time of on-boarding, medical requirements, salary structure, etc.</li>
+                <li>Students are advised to observe the Dress Code (detailed later) during the process of campus placement.</li>
+                <li>No student can approach the panel members of the recruiters individually during the process. For some pressing need, the student may bring the issue to our notice; we shall take a call and may talk to the recruiter on their behalf.</li>
+              </ol>
+              Norms to be followed during GD, Personal Interview and Other Subsequent Processes:
+              <ol>
+                <li>Students should make themselves available at the stipulated place as long as the process continues and be present as and when their names are called. Students must keep silence and must not roam in the corridor.</li>
+                <li>Only those students, who are a part of the process and have been shortlisted for the ongoing rounds are allowed to enter the T&amp;P facility.</li>
+                <li>The event of congratulating the successful candidate/s by any physical means is strictly prohibited because the same may be tantamount to ragging, which is punishable under law.</li>
+                <li>All the students, shortlisted for the final round must be present till the end of the process, particularly at the time of declaration of result.</li>
+              </ol>
+              Post-Selection:
+              <ol>
+                <li>If the recruiter allots any student-ID, Enrolment No. etc pertaining to the recruitment process, it should be preserved till the joining.</li>
+                <li>The mobile number and e-mail lD shared with the recruiter should be kept live till joining.</li>
+                <li>The mass recruiters like Cognizant, Infosys etc. generally schedule the joining in batches, and one has to wait till his/ her turn comes.</li>
+                <li>Be in touch with other selects and ensure that you are up to date about the communication shared by your recruiter.</li>
+                <li>Onboarding of placed students solely depends on the medical fitness prescribed by the company.</li>
+              </ol>
+              Few points worth mentioning:
+              <ol>
+                <li>Students are required to keep their Identity Cards with them at the time of appearing in the selection process and shall produce the same on being asked for either by the selection team members or the placement office team.</li>
+                <li>The students must comply with the results of any recruitment process / tests conducted during the process, and no request for divulging individual feedback/ marks are entertained. The recruiter should never be contacted by the applicants in this regard.</li>
+                <li>The choice of Campus/Degree/Branch for a particular placement process is recruiter's prerogative and Training and Placement Division neither interferes nor influences the choice. Students are strictly prohibited from requesting for inclusion of their Campus/Degree/Branch etc. A recruiter may not allow particular campuses or branches based on their own policies and wisdom. We honour their decisions in this regard.</li>
+                <li>T&amp;P division never shortlists the eligible students unless being requested by the recruiter to do so based on some objective parameter that deemed suitable by the recruiter. T&amp;P division does not employ any eligibility criteria, it is a policy decision set by the recruiter, based on the parameters like available resources, vacancies available, norms of the organisation etc.</li>
+                <li>CGPA 5.99 is not equivalent to 6.00,and Mechanical and Production are not the same branch.</li>
+                <li>Onboarding of placed students solely depends on the medical fitness prescribed by the company.</li>
+                <li>The time allowed to apply for a process is sometime even less than 6 hours and the students are expected to respond with agility. When the notice period is short, we try to disseminate the news among the students with the best of our ability, but the students must take the onus to respond within the time. We expect the students to be present on the campus during the official working days and anyone who is out of campus should keep in touch with their batch to be appraised of the placement activities happening on the campus.</li>
+                <li>Any student who still manages to fail to register, must wait till the next recruitment process, if any.</li>
+                <li>Every registered student is required to be present during the placement procedure of any company.</li>
+                <li>Placement office takes the responsibility of centrally receiving all the offer letters, distribution of the same as well as sending the acceptance letters to the companies.</li>
+                <li>The female students who are in the process should stay within the stipulated place past the hostel in-time hours. Permission Letter should be issued by the Training and Placement Division which must be collected by the female students while going back to their hostels.</li>
+                <li>Students are required to keep all their Necessary Documents (copies of all certificates / grade cards etc.), minimum 5 copies of Resume, 5 passport size photographs with them at the time of campus placement. No requests for printing of resumes / documents will be entertained by the T&amp;P division.</li>
+                <li>Students should carry blank rough sheets and required stationery with them during a test and should carry it back when the test is over.</li>
+                <li>While attending the Written / Online test, students should not carry any valuable items including cell phone/ important documents as they will not be allowed to take these items inside the Examination Hall / Computer Lab and must leave them outside at their own risk. Training and Placement division shall not take any responsibility for any damage/ loss or theft.</li>
+                <li>The request for attendance must be submitted to Training and Placement Office within a week from the last date of process. Confirmation for the participation in the process will be provided to only those students who submit their attendance at the time of the process.</li>
+                <li>No-Dues clearance from Training &amp; Placement will be given only when the candidate submits a copy of his/her offer letter, if placed.</li>
+              </ol>
+Training and Placement Division wishes ‘Best of Luck’ to all the BIT Mesra students for their placements.
+            <p></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Agree</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <input type="hidden" id="llog" value="1693042233">
+        <footer class="footer">
+          
+  <noscript>
+      <div style="z-index:99999; background-color:#000000e0; width:100%; height:100vh; display:block; overflow:hidden; position:fixed; top:0px; left:0px" align="center">
+          <br/><br/><h3 style="color:red; margin:15px auto;">
+             For full functionality of this site it is necessary to enable JavaScript.</h3>
+             <b class="text-light">Here are the</b> <a href="https://www.enable-javascript.com/" target="_blank" class="text-warning">
+             instructions how to enable JavaScript in your web browser</a>.<br/><br/>
+             <a href="" class="text-success"><h4>click to check/Reload</h4></a>
+      </div>
+  </noscript>
+  <div class="d-sm-flex justify-content-center justify-content-sm-between">
+    <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © <a href="/">T&amp;P BIT Mesra </a>2023</span>
+    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Powered By <a href="https://sankritinfotech.co.in" target="_blank"> SIPL </a></span>
+  </div>        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div> 
+    <script src="assets/vendors/base/vendor.bundle.base.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page-->
+  <script src="assets/vendors/chart.js/Chart.min.js"></script>
+  <script src="assets/vendors/datatables.net/jquery.dataTables.js"></script>
+  <script src="assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+  <script src="assets/js/bootstrap-datepicker.min.js"></script>
+  <script src="assets/js/select2.full.min.js"></script>
+
+  <!-- End plugin js for this page-->
+  <!-- inject:js -->
+  <script src="assets/js/off-canvas.js"></script>
+  <script src="assets/js/hoverable-collapse.js"></script>
+  <script src="assets/js/template.js"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="assets/js/dashboard.js"></script>
+  <script src="assets/js/data-table.js"></script>
+  <script src="assets/js/jquery.dataTables.js"></script>
+  <script src="assets/js/dataTables.bootstrap4.js"></script>
+  <!-- End custom js for this page-->
+  <script src="assets/js/moment/moment.js"></script>
+
+  <script src="assets/js/jquery.cookie.js" type="text/javascript"></script>
+  <script>
+    $(document).ready(function (e) {
+          $(".select2").select2();
+      });
+  </script>  <script>
+    $(document).ready(function(e){
+      $("#job-listings").DataTable({"columnDefs": [ {
+      "targets"  : 'no-sort',
+      "orderable": false,
+      }],order: [[2, 'desc']],"pageLength": 25});
+      
+      $("#newseventsx").DataTable({"columnDefs": [ {
+        "targets"  : 'no-sort', "orderable": false,
+        }],order: [[0, 'desc']], "dom": 'ftp',"pageLength": 12,"scrollY": "96vh", "scrollCollapse": true,  "paging": false,});
+        
+      var llogin = $('#llog').val();
+      if(llogin=='')
+        $('#largeModal').modal('show');
+      
+    });
+  </script>  
+
+
+
+
+</body></html>
